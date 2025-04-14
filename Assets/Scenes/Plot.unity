@@ -5841,7 +5841,7 @@ Camera:
   m_GameObject: {fileID: 1156670012}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -8544,7 +8544,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1840428390}
   - component: {fileID: 1840428389}
-  - component: {fileID: 1840428388}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -8552,20 +8551,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1840428388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840428387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6befd384ac45145a7330314ade63fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  moveSpeed: 2
 --- !u!114 &1840428389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8598,7 +8583,7 @@ Transform:
   m_GameObject: {fileID: 1840428387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.416513, y: 0.113986954, z: 0.03556368}
+  m_LocalPosition: {x: -15.03, y: 0.113986954, z: 0.03556368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

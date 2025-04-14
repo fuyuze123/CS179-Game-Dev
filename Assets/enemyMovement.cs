@@ -12,8 +12,10 @@ public class enemyMovement : MonoBehaviour
 
     private Transform target;
     private int pathIndex = 0;
-    private void start()
+    private void Start()
     {
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
         target = LevelManagingScript.main.path[0]; //first element
     }
     private void Update()
