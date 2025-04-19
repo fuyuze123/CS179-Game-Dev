@@ -26,12 +26,16 @@ public class enemyMovement : MonoBehaviour
        
             if(pathIndex == LevelManagingScript.main.path.Length)
             {
+                // Call a function to deal damage
+                LevelManagingScript.main.DealDamage();
+                LevelManagingScript.main.PrintHealth();
                 Destroy(gameObject);
                 return;
             }
             else
             {
                 target = LevelManagingScript.main.path[pathIndex];
+                LevelManagingScript.main.PrintHealth();
             }
         }
 
