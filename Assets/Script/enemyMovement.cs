@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
                 LevelManagingScript.main.DealDamage();
                 LevelManagingScript.main.PrintHealth();
                 EnemySpawner.onEnemyDestroy.Invoke();
-                isDestroyed = true;
+                isDestroyed = true; // fixed two towers bug
                 Destroy(gameObject);
                 return;
             }
