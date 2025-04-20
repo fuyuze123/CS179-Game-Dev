@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Transform target;
 
