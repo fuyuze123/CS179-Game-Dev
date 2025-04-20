@@ -21,10 +21,22 @@ public class TowerPlacementScript : MonoBehaviour
         if (isPlacing && Input.GetMouseButtonDown(0))
         {
             Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(turretPrefab, worldPos, Quaternion.identity);
-            isPlacing = false;
+            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                BuildTile tile = hit.collider.GetComponent<BuildTile>();
+                if (tile != null && tile.CanBuildHere())
+                {
+                    tile.Build(turretPrefab);
+                    isPlacing = false;
+
+
+                }
+            }
         }
     }
+
 
     public void StartPlacing(GameObject selectedTurret)
     {
