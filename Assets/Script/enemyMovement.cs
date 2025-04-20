@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class enemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
@@ -26,7 +26,6 @@ public class enemyMovement : MonoBehaviour
        
             if(pathIndex == LevelManagingScript.main.path.Length)
             {
-                // Call a function to deal damage
                 LevelManagingScript.main.DealDamage();
                 LevelManagingScript.main.PrintHealth();
                 Destroy(gameObject);

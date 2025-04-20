@@ -6,19 +6,31 @@ public class LevelManagingScript : MonoBehaviour
     public static LevelManagingScript main;
     public Transform startPoint;
     public Transform[] path;
-    public int playerHealth = 100;
+
+    [SerializeField] private PlayerHealth playerHealth;
 
     private void Awake()
     {
         main = this;
+        if (playerHealth == null)
+        {
+            Debug.Log("PlayerHealth is null");
+        }
     }
+
     public void DealDamage()
     {
-        playerHealth--;
-        Debug.Log("Damage Dealt!");
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(1);
+        }
     }
+
     public void PrintHealth()
     {
-        Debug.Log("Player Health: " + playerHealth);
+        if (playerHealth != null)
+        {
+            Debug.Log("Player Health: " + playerHealth.GetHealth());
+        }
     }
 }
