@@ -1,18 +1,21 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private Transform turretRotationPoint;
     [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
 
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f; //
     [SerializeField] private float rotationSpeed = 5f; // Speed of turret rotation
+     [SerializeField]private float fireRate = 1f;
 
     private Transform target;  // The target to be tracked
-    
+    private float timeUntilNextBullet;
     private void FindTarget()
     {
         RaycastHit2D[] hits =  Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2) transform.position, 0f, enemyMask);
@@ -44,9 +47,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (Vector2.Distance(turretRotationPoint.position, target.position) > targetingRange)
         {
             target = null;
-            return;
+            return;        
+            
+            }
+        else
+        {
+            timeUntilNextBullet += Time.deltaTime;
+            if(timeUntilNextBullet >= 1f / fireRate)
+            {
+                shoot();
+                timeUntilNextBullet = 0f;
+            }
         }
 
+    }
+    private void shoot()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        bullet bulletScript = bulletObj.GetComponent<bullet>();
+        bulletScript.SetTarget(target);
     }
     
 
