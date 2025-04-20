@@ -20,6 +20,11 @@ public class bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Vector2 direction = target.position - transform.position;
         direction = direction.normalized;
         rb.linearVelocity = direction * bulletVelocity;
@@ -28,7 +33,11 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
+        Health enemyHealth = collision.gameObject.GetComponent<Health>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(bulletDamage);
+        }
         Destroy(gameObject);
         
     }
