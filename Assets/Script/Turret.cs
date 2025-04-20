@@ -1,0 +1,91 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+public class Tower : MonoBehaviour
+{
+    [Header("Reference")]
+    [SerializeField] private Transform turretRotationPoint;
+    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
+
+    [Header("Attribute")]
+    [SerializeField] private float targetingRange = 5f; //
+    [SerializeField] private float rotationSpeed = 5f; // Speed of turret rotation
+     [SerializeField]private float fireRate = 1f;
+
+    private Transform target;  // The target to be tracked
+    private float timeUntilNextBullet;
+    private void FindTarget()
+    {
+        RaycastHit2D[] hits =  Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2) transform.position, 0f, enemyMask);
+
+        if(hits.Length > 0)
+        {
+            target = hits[0].transform;
+        }
+    }
+
+    private void rotateTowardTarget()
+    {
+        Vector2 direction = target.position - turretRotationPoint.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        Quaternion targetRotation  = Quaternion.Euler(new Vector3(0, 0, angle));
+        turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
+    private void Update()
+    {
+        if (target == null)
+        {
+            FindTarget();
+            return;
+        }
+
+        rotateTowardTarget();
+        if (Vector2.Distance(turretRotationPoint.position, target.position) > targetingRange)
+        {
+            target = null;
+            return;        
+            
+            }
+        else
+        {
+            timeUntilNextBullet += Time.deltaTime;
+            if(timeUntilNextBullet >= 1f / fireRate)
+            {
+                shoot();
+                timeUntilNextBullet = 0f;
+            }
+        }
+
+    }
+    private void shoot()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        bullet bulletScript = bulletObj.GetComponent<bullet>();
+        bulletScript.SetTarget(target);
+    }
+    
+
+
+
+
+
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(turretRotationPoint.position, targetingRange);
+    }
+
+
+
+
+
+
+
+
+}
