@@ -257,3 +257,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   targetingRange: 2.83
+  rotationSpeed: 200

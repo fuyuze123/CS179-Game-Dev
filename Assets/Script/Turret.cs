@@ -9,7 +9,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f; //
-
+    [SerializeField] private float rotationSpeed = 5f; // Speed of turret rotation
 
     private Transform target;  // The target to be tracked
     
@@ -28,7 +28,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector2 direction = target.position - turretRotationPoint.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         Quaternion targetRotation  = Quaternion.Euler(new Vector3(0, 0, angle));
-        turretRotationPoint.rotation = targetRotation;
+        turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
 
