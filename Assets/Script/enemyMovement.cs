@@ -28,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 LevelManagingScript.main.DealDamage();
                 LevelManagingScript.main.PrintHealth();
+                EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
             }
