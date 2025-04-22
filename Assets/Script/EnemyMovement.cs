@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
             if(pathIndex == LevelManagingScript.main.path.Length)
             {
                 LevelManagingScript.main.DealDamage();
-                LevelManagingScript.main.PrintHealth();
+                // LevelManagingScript.main.PrintHealth();
                 EnemySpawner.onEnemyDestroy.Invoke();
                 isDestroyed = true; // fixed two towers bug
                 Destroy(gameObject);
@@ -39,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
             else
             {
                 target = LevelManagingScript.main.path[pathIndex];
-                LevelManagingScript.main.PrintHealth();
+                // LevelManagingScript.main.PrintHealth();
             }
         }
 

@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
         }
         isDead = true;
         EnemySpawner.onEnemyDestroy.Invoke();
+        GoldRewarder.instance.ChangeGold(2);
         Destroy(gameObject);
     }
 }
