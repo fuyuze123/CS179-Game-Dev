@@ -12,11 +12,11 @@ public class LevelManagingScript : MonoBehaviour
         main = this;
     }
 
-    public void DealDamage()
+    public void DealDamage(int amount)
     {
         if (PlayerHealth.instance != null)
         {
-            PlayerHealth.instance.TakeDamage(1);
+            PlayerHealth.instance.TakeDamage(amount);
         }
     }
 

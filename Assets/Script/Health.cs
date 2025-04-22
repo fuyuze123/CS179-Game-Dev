@@ -39,4 +39,9 @@ public class Health : MonoBehaviour
         GoldRewarder.instance.ChangeGold(2);
         Destroy(gameObject);
     }
+
+    public int GetCurrentHealth()
+    {
+        return Mathf.Max(0, currentHealth);
+    }
 }
