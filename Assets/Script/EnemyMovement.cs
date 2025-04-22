@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
         healthComponent = GetComponent<Health>();
         if (healthComponent == null)
         {
-            Debug.Log("Error with health component!");
+            Debug.LogError("Error with health component!");
             return;
         }
     }
