@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastSpawn = 0f;
+        GoldRewarder.instance.ChangeGold(100);
         currentWave++;
         StartCoroutine(StartWave());
     }
