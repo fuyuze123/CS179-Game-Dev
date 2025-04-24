@@ -2,16 +2,17 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private Button startWaveButton;
 
     [Header("Attributes")]
     [SerializeField] private int baseEnemies = 12;
     [SerializeField] private float enemiesPerSecond = 2f;
-    [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyScalingFactor = 0.75f;
 
     [Header("Events")]
@@ -30,7 +31,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartWave());
+        if (startWaveButton != null)
+        {
+            startWaveButton.interactable = true;
+        }
     }
 
     private void Update()
@@ -61,11 +65,16 @@ public class EnemySpawner : MonoBehaviour
         enemiesAlive--;
     }
 
-    private IEnumerator StartWave()
+    public void StartWave()
     {
-        yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
+        enemiesAlive = 0;
+        timeSinceLastSpawn = 0f;
+        if (startWaveButton != null)
+        {
+            startWaveButton.interactable = false;
+        }
     }
 
     private void EndWave()
@@ -74,7 +83,10 @@ public class EnemySpawner : MonoBehaviour
         timeSinceLastSpawn = 0f;
         GoldRewarder.instance.ChangeGold(100);
         currentWave++;
-        StartCoroutine(StartWave());
+        if (startWaveButton != null)
+        {
+            startWaveButton.interactable = true;
+        }
     }
 
     private void SpawnEnemy()
