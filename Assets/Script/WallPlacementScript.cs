@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class WallPlacementScript : MonoBehaviour
+{
+    [Header("Placement Settings")]
+    [SerializeField] private Camera mainCamera;
+
+    private GameObject wallPrefab;
+    private bool isPlacing = false;
+
+    private void Awake()
+    {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlacing && Input.GetMouseButtonDown(0))
+        {
+            Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                BuildTile tile = hit.collider.GetComponent<BuildTile>();
+                if (tile != null && tile.CanBuildHere())
+                {
+                    tile.Build(wallPrefab);
+                    isPlacing = false;
+
+
+                }
+            }
+        }
+    }
+
+
+    public void StartPlacing(GameObject selectedWall)
+    {
+        wallPrefab = selectedWall;
+        isPlacing = true;
+    }
+
+
+}
