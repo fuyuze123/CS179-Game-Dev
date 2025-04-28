@@ -32,7 +32,7 @@ public class GoldRewarder : MonoBehaviour
     public void ChangeGold(int amount)
     {
         current_amount += amount;
-        Debug.Log("Gold Added: " + amount);
+        Debug.Log("Gold Modified: " + amount);
         // Debug.Log("Current Gold: " + current_amount);
         onGoldChange.Invoke(current_amount);
     }
