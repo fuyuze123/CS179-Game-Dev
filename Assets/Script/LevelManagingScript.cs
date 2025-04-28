@@ -7,30 +7,24 @@ public class LevelManagingScript : MonoBehaviour
     public Transform startPoint;
     public Transform[] path;
 
-    [SerializeField] private PlayerHealth playerHealth;
-
     private void Awake()
     {
         main = this;
-        if (playerHealth == null)
-        {
-            Debug.Log("PlayerHealth is null");
-        }
     }
 
-    public void DealDamage()
+    public void DealDamage(int amount)
     {
-        if (playerHealth != null)
+        if (PlayerHealth.instance != null)
         {
-            playerHealth.TakeDamage(1);
+            PlayerHealth.instance.TakeDamage(amount);
         }
     }
 
     public void PrintHealth()
     {
-        if (playerHealth != null)
+        if (PlayerHealth.instance != null)
         {
-            Debug.Log("Player Health: " + playerHealth.GetHealth());
+            Debug.Log("Player Health: " + PlayerHealth.instance.GetHealth());
         }
     }
 }

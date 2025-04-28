@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+    private Health healthComponent;
 
     [Header("Attribute")]
     [SerializeField] private float moveSpeed = 2f;
@@ -17,8 +18,21 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         if (rb == null)
+        {
             rb = GetComponent<Rigidbody2D>();
-        target = LevelManagingScript.main.path[0]; //first element
+        }
+        
+        if (LevelManagingScript.main.path != null)
+        {
+            target = LevelManagingScript.main.path[0]; //first element
+        }
+
+        healthComponent = GetComponent<Health>();
+        if (healthComponent == null)
+        {
+            Debug.LogError("Error with health component!");
+            return;
+        }
     }
 
     private void Update()
@@ -27,10 +41,10 @@ public class EnemyMovement : MonoBehaviour
         {
         pathIndex++;
        
-            if(pathIndex == LevelManagingScript.main.path.Length)
+            if (pathIndex == LevelManagingScript.main.path.Length)
             {
-                LevelManagingScript.main.DealDamage();
-                LevelManagingScript.main.PrintHealth();
+                LevelManagingScript.main.DealDamage(healthComponent.GetCurrentHealth());
+                // LevelManagingScript.main.PrintHealth();
                 EnemySpawner.onEnemyDestroy.Invoke();
                 isDestroyed = true; // fixed two towers bug
                 Destroy(gameObject);
@@ -38,8 +52,11 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                target = LevelManagingScript.main.path[pathIndex];
-                LevelManagingScript.main.PrintHealth();
+                if (pathIndex < LevelManagingScript.main.path.Length)
+                {
+                    target = LevelManagingScript.main.path[pathIndex];
+                }
+                // LevelManagingScript.main.PrintHealth();
             }
         }
 
