@@ -4,6 +4,7 @@ public class TowerPlacementScript : MonoBehaviour
 {
     [Header("Placement Settings")]
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private LayerMask buildablePlotLayer;
 
     private GameObject turretPrefab;
     private bool isPlacing = false;
@@ -21,7 +22,7 @@ public class TowerPlacementScript : MonoBehaviour
         if (isPlacing && Input.GetMouseButtonDown(0))
         {
             Vector2 worldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, Mathf.Infinity, buildablePlotLayer);
 
             if (hit.collider != null)
             {

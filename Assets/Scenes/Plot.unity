@@ -2127,6 +2127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 3670973750688681213, guid: c1e8b25376d7f3c408bf57de1a9f513c, type: 3}
+  wallCost: 20
 --- !u!1001 &377207669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10476,6 +10477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1156670015}
+  buildablePlotLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &1993287135
 PrefabInstance:
   m_ObjectHideFlags: 0
