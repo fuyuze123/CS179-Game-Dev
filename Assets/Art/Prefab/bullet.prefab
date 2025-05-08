@@ -167,3 +167,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3230484631557731972}
   bulletVelocity: 10
+  bulletDamage: 1
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  tileLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
