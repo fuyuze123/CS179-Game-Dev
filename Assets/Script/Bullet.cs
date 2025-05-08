@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float bulletVelocity = 10f;
     [SerializeField] private int bulletDamage = 1;
 
+    [Header("Layers")]
+    [SerializeField] private LayerMask enemyLayerMask;
+    [SerializeField] private LayerMask tileLayerMask;
 
     public void SetTarget(Transform _target)
     {
@@ -28,17 +31,29 @@ public class Bullet : MonoBehaviour
         Vector2 direction = target.position - transform.position;
         direction = direction.normalized;
         rb.linearVelocity = direction * bulletVelocity;
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Health enemyHealth = collision.gameObject.GetComponent<Health>();
-        if (enemyHealth != null)
+        int hitLayerBit = 1 << collision.gameObject.layer;
+        if ((enemyLayerMask.value & hitLayerBit) != 0)
         {
-            enemyHealth.TakeDamage(bulletDamage);
+            Health enemyHealth = collision.gameObject.GetComponent<Health>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(bulletDamage);
+            }
+            Destroy(gameObject);
+            return;
         }
-        Destroy(gameObject);
-        
+        else if ((tileLayerMask.value & hitLayerBit) != 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            return;
+        }
     }
 }

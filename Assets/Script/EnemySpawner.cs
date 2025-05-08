@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
+    public static UnityEvent<int> onWaveChange = new UnityEvent<int>();
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
@@ -35,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
         {
             startWaveButton.interactable = true;
         }
+        onWaveChange.Invoke(currentWave);
     }
 
     private void Update()
@@ -75,6 +77,7 @@ public class EnemySpawner : MonoBehaviour
         {
             startWaveButton.interactable = false;
         }
+        onWaveChange.Invoke(currentWave);
     }
 
     private void EndWave()
@@ -87,6 +90,7 @@ public class EnemySpawner : MonoBehaviour
         {
             startWaveButton.interactable = true;
         }
+        onWaveChange.Invoke(currentWave);
     }
 
     private void SpawnEnemy()
@@ -98,5 +102,10 @@ public class EnemySpawner : MonoBehaviour
     private int EnemiesPerWave()
     {
         return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor));
+    }
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
     }
 }

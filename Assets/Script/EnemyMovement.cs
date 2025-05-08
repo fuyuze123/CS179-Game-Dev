@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
         
         if (LevelManagingScript.main.path != null)
         {
-            target = LevelManagingScript.main.path[0]; //first element
+            target = LevelManagingScript.main.path[0];
         }
 
         healthComponent = GetComponent<Health>();
@@ -44,9 +44,8 @@ public class EnemyMovement : MonoBehaviour
             if (pathIndex == LevelManagingScript.main.path.Length)
             {
                 LevelManagingScript.main.DealDamage(healthComponent.GetCurrentHealth());
-                // LevelManagingScript.main.PrintHealth();
                 EnemySpawner.onEnemyDestroy.Invoke();
-                isDestroyed = true; // fixed two towers bug
+                isDestroyed = true;
                 Destroy(gameObject);
                 return;
             }
@@ -56,7 +55,6 @@ public class EnemyMovement : MonoBehaviour
                 {
                     target = LevelManagingScript.main.path[pathIndex];
                 }
-                // LevelManagingScript.main.PrintHealth();
             }
         }
 
@@ -71,5 +69,24 @@ public class EnemyMovement : MonoBehaviour
         }
         Vector2 direction = (target.position - transform.position).normalized;
         rb.linearVelocity = direction * moveSpeed;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        WallHealth wallHealth = collision.gameObject.GetComponent<WallHealth>();
+        if (wallHealth != null && healthComponent != null)
+        {
+            int wallOriginalHealth = wallHealth.GetCurrentHealth();
+            int enemyCurrentHealth = healthComponent.GetCurrentHealth();
+
+            if (enemyCurrentHealth > 0)
+            {
+                wallHealth.TakeDamage(enemyCurrentHealth);
+                if (wallOriginalHealth > 0)
+                {
+                    healthComponent.TakeDamage(wallOriginalHealth);
+                }
+            }
+        }
     }
 }
