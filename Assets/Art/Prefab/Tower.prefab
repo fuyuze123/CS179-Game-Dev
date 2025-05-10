@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4312262008757595155}
   - component: {fileID: 7836580072419187646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1078986167418048761}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CenterOfRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681611086497039399}
   - component: {fileID: 8698550077845911693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower_cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2930168983542508197}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: firingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1438852274991251850}
   - component: {fileID: 2630898643937237383}
   - component: {fileID: -9045258138315274391}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,3 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f981779be1b204f9e4e591a8775670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 512
