@@ -11260,6 +11260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 2058658486215705293, guid: fcdca85a555d9fa41833d8061769eb07, type: 3}
+  bossEnemyPrefab: {fileID: 602553771946555303, guid: 0770af5825aa6be4ea4bd3a6292df145, type: 3}
   startWaveButton: {fileID: 0}
   baseEnemies: 12
   enemiesPerSecond: 2
