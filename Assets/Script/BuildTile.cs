@@ -18,10 +18,10 @@ public class BuildTile : MonoBehaviour
         TowerClickDetector clickDetector = turret.GetComponent<TowerClickDetector>();
         if (clickDetector != null)
         {
-            var panel = FindObjectOfType<TowerUpgradePanel>(true);
-            var manager = FindObjectOfType<TowerSelectionManager>(true);
-            clickDetector.upgradePanel = FindObjectOfType<TowerUpgradePanel>();
-            clickDetector.selectionManager = FindObjectOfType<TowerSelectionManager>();
+            var panel = FindFirstObjectByType<TowerUpgradePanel>(FindObjectsInactive.Include);
+            var manager = FindFirstObjectByType<TowerSelectionManager>(FindObjectsInactive.Include);
+            clickDetector.upgradePanel = FindFirstObjectByType<TowerUpgradePanel>();
+            clickDetector.selectionManager = FindFirstObjectByType<TowerSelectionManager>();
             Debug.Log($"[Assign] upgradePanel: {(panel != null ? "OK" : "NULL")}, selectionManager: {(manager != null ? "OK" : "NULL")}");
         }
         else

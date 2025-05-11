@@ -14,7 +14,7 @@ public class TowerUpgradePanel : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
         if (selectionManager == null)
         {
-            selectionManager = FindObjectOfType<TowerSelectionManager>();
+            selectionManager = FindFirstObjectByType<TowerSelectionManager>();
         }
     }
 

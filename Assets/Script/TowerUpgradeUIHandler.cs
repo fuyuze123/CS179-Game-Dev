@@ -46,7 +46,7 @@ public class TowerUpgradeUIHandler : MonoBehaviour
         {
             tower.ApplyPerkFromUI(perk);
 
-        TowerUpgradePanel panel = FindObjectOfType<TowerUpgradePanel>();
+        TowerUpgradePanel panel = FindFirstObjectByType<TowerUpgradePanel>();
         if (panel != null)
         {
             panel.Show(tower); // refresh
