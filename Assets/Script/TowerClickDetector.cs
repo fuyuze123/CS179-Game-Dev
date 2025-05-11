@@ -21,7 +21,7 @@ public class TowerClickDetector : MonoBehaviour
             sr = GetComponentInChildren<SpriteRenderer>();
             ogColor = sr != null ? sr.color : Color.white;
         }
-        if (upgradePanel == null) {upgradePanel = FindFirstObjectByType<TowerUpgradePanel>(FindObjectsInactive.Include);;}
+        if (upgradePanel == null) {upgradePanel = FindFirstObjectByType<TowerUpgradePanel>(FindObjectsInactive.Include);}
         if (selectionManager == null)
         {
         selectionManager = FindFirstObjectByType<TowerSelectionManager>();

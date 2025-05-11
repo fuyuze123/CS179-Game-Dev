@@ -69,15 +69,13 @@ public class TowerUpgradePanel : MonoBehaviour
         if(selectionManager !=null){selectionManager.RegisterSelectedTower(null);}
         if (currentTower != null)
         {
-        // Refund gold? Let's do 45 for now. 
-        GoldRewarder.instance.ChangeGold(+45);
-
-
-        Destroy(currentTower.gameObject);
-
-        // Clear and hide panel
-        currentTower = null;
-        Hide();
+            ClearButtons();
+            // Refund gold? Let's do 45 for now. 
+            GoldRewarder.instance.ChangeGold(+45);
+            Destroy(currentTower.gameObject);
+            // Clear and hide panel
+            currentTower = null;
+            Hide();
         }
 
 
