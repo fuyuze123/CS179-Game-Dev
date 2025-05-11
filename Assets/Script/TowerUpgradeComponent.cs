@@ -31,40 +31,67 @@ public class TowerUpgradeComponent : MonoBehaviour
         GetComponent<Tower>().updateDamage(perk.damageModifier);
         GetComponent<Tower>().updateFireRate(perk.fireRateModifier);
         GetComponent<Tower>().updateRange(perk.rangeModifier);
+        Debug.Log("Upgraded");
     }
 
 
-    public bool CanSelect(TowerPerk perk)
-{
-    if (selectedPath == null)
+        public bool CanSelect(TowerPerk perk)
     {
-        // Choosing first perk from either path
-        if (pathA.Contains(perk) && pathA !=null)
+        if (perk == null) return false;
+
+        // No path selected — only allow first perk in either path
+        if (selectedPath == null)
         {
-            selectedPath = pathA;
-            return perk == pathA.firstPerk;
+            return (pathA != null && pathA.firstPerk == perk)
+                || (pathB != null && pathB.firstPerk == perk);
         }
-        else if (pathB.Contains(perk)&& pathB !=null)
-        {
-            selectedPath = pathB;
-            return perk == pathB.firstPerk;
-        }
-        return false;
-    }
-    else
-    {
-        // Only allow continuing down the selected path
+
         if (!selectedPath.Contains(perk)) return false;
+
+        // If no currentPerk yet (shouldn’t happen anymore), allow the first one
+        if (currentPerk == null)
+        {
+            return perk == selectedPath.firstPerk;
+        }
+
+        // Allow the next perk only
         return perk == currentPerk.nextPerk;
     }
-}
+
+
 
     public void ApplyPerkFromUI(TowerPerk perk)
     {
+        if (perk == null) return;
+
+        if (selectedPath == null)
+        {
+            if (pathA != null && pathA.firstPerk == perk)
+                selectedPath = pathA;
+            else if (pathB != null && pathB.firstPerk == perk)
+                selectedPath = pathB;
+            else
+            {
+                Debug.LogWarning($"[TowerUpgradeComponent] Invalid first perk: {perk.name}");
+                return;
+            }
+        }
+
         if (!CanSelect(perk)) return;
 
-         currentPerk = perk;
-         ApplyPerk(perk);
-    }
+        // Check for gold
+        if (GoldRewarder.instance.GetCurrentGold() < perk.upgradeCost)
+        {
+            Debug.Log("Not enough gold to apply upgrade.");
+            return;
+        }
+
+        // Deduct gold
+        GoldRewarder.instance.ChangeGold(-perk.upgradeCost);
+
+        currentPerk = perk;
+        ApplyPerk(perk);
+        }
+
 
 }

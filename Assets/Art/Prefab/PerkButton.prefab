@@ -136,6 +136,6 @@ MonoBehaviour:
   perk: {fileID: 0}
   tower: {fileID: 0}
   defaultIcon: {fileID: 787614381323840448}
-  button: {fileID: 0}
+  button: {fileID: 3401486325050138544}
   perkNameText: {fileID: 0}
   perkStatText: {fileID: 0}

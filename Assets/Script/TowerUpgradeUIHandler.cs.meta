@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 6b197f7becafd694c8f939725143e872
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - perk: {instanceID: 0}
+  - tower: {instanceID: 0}
+  - defaultIcon: {instanceID: 0}
+  - button: {instanceID: 0}
+  - perkNameText: {instanceID: 0}
+  - perkStatText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

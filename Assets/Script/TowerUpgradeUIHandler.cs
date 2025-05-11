@@ -11,14 +11,33 @@ public class TowerUpgradeUIHandler : MonoBehaviour
     [SerializeField] private Text perkNameText;      
     [SerializeField] private Text perkStatText;     
 
+    private void Awake()
+    {
+        if (button == null)
+        {
+            button = GetComponent<Button>();
+        }
+    }
 
     private void Start()
     {
-        if (button == null)
-            button = GetComponent<Button>();
+        if (button == null) {button = GetComponent<Button>();}
+
 
         button.onClick.AddListener(OnClick);
-        UpdateVisuals(); // Optional
+        GoldRewarder.onGoldChange.AddListener(OnGoldChanged);
+
+        UpdateVisuals();
+    }
+
+    private void OnDestroy()
+    {
+    GoldRewarder.onGoldChange.RemoveListener(OnGoldChanged);
+    }   
+
+    private void OnGoldChanged(int newGold)//This function calls itself when the goldreward version of goldchange gets call
+    {
+    UpdateVisuals();
     }
 
     private void OnClick()
@@ -26,20 +45,60 @@ public class TowerUpgradeUIHandler : MonoBehaviour
         if (tower != null && perk != null)
         {
             tower.ApplyPerkFromUI(perk);
-        }
-    }
 
-    public void UpdateVisuals()
-    {
-        if (perkNameText != null)
-            perkNameText.text = perk.perkName;
-        if(perk.icon!= null){defaultIcon.sprite = perk.icon;}
-
-        if (perkStatText != null)
+        TowerUpgradePanel panel = FindObjectOfType<TowerUpgradePanel>();
+        if (panel != null)
         {
-            perkStatText.text = $"DMG x{perk.damageModifier}, " +
-                                $"FR x{perk.fireRateModifier}, " +
-                                $"RNG x{perk.rangeModifier}";
+            panel.Show(tower); // refresh
+        }
+
+
         }
     }
+
+        public void UpdateVisuals()
+        {
+            if (perkNameText != null)
+                perkNameText.text = perk != null ? perk.perkName : "[null perk]";
+
+            if (perkStatText != null && perk != null)
+            {
+                perkStatText.text = $"DMG x{perk.damageModifier}, " +
+                                    $"FR x{perk.fireRateModifier}, " +
+                                    $"RNG x{perk.rangeModifier}";
+            }
+
+            if (defaultIcon != null && perk != null && perk.icon != null)
+            {
+                defaultIcon.sprite = perk.icon;
+            }
+
+          
+            if (tower == null || perk == null)
+            {
+                Debug.LogWarning($"[UIHandler] Tower or Perk is null! tower={tower}, perk={perk}");
+                button.interactable = false;
+                return;
+            }
+
+            bool canAfford = GoldRewarder.instance.GetCurrentGold() >= perk.upgradeCost;
+            bool canSelect = tower != null && tower.CanSelect(perk);
+
+            if (!canSelect || !canAfford)
+            {
+                button.interactable = false;
+                var colors = button.colors;
+                colors.normalColor = Color.gray;
+                button.colors = colors;
+            }
+            else
+            {
+                button.interactable = true;
+                var colors = button.colors;
+                colors.normalColor = Color.white;
+                button.colors = colors;
+            }
+
+        }
+
 }

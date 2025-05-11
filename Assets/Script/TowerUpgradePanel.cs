@@ -48,7 +48,7 @@ public class TowerUpgradePanel : MonoBehaviour
             TowerUpgradeUIHandler handler = buttonObj.GetComponent<TowerUpgradeUIHandler>();
             handler.perk = current;
             handler.tower = currentTower;
-            //handler.UpdateVisuals(); // optional
+            handler.UpdateVisuals(); // optional
             current = current.nextPerk;
         }
     }
