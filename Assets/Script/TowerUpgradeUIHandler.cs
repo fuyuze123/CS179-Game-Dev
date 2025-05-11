@@ -32,7 +32,7 @@ public class TowerUpgradeUIHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-    GoldRewarder.onGoldChange.RemoveListener(OnGoldChanged);
+        GoldRewarder.onGoldChange.RemoveListener(OnGoldChanged);
     }   
 
     private void OnGoldChanged(int newGold)//This function calls itself when the goldreward version of goldchange gets call
@@ -59,7 +59,7 @@ public class TowerUpgradeUIHandler : MonoBehaviour
         public void UpdateVisuals()
         {
             if (perkNameText != null)
-                perkNameText.text = perk != null ? perk.perkName : "[null perk]";
+                {perkNameText.text = perk != null ? perk.perkName : "[null perk]";}
 
             if (perkStatText != null && perk != null)
             {

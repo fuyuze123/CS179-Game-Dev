@@ -10,7 +10,7 @@ public class TowerUpgradeComponent : MonoBehaviour
 
     public void SelectUpgradePath(bool isPathA)
     {
-        if (selectedPath != null) return;  
+        if (selectedPath != null) {return;} 
 
         selectedPath = isPathA ? pathA : pathB;
         currentPerk = selectedPath.firstPerk;
@@ -37,7 +37,7 @@ public class TowerUpgradeComponent : MonoBehaviour
 
         public bool CanSelect(TowerPerk perk)
     {
-        if (perk == null) return false;
+        if (perk == null) {return false};
 
         // No path selected — only allow first perk in either path
         if (selectedPath == null)
