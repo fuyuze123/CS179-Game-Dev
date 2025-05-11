@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e191b9636e36e104fa6c2bb88cac3d4e, type: 3}
+  m_Name: Targeting System Upgrade
+  m_EditorClassIdentifier: 
+  perkName: Targeting System Upgrade
+  description: 
+  icon: {fileID: 401577243715708492, guid: 16fe7536be0be744fbe3083ebd933b1a, type: 3}
+  damageModifier: 1
+  fireRateModifier: 1
+  rangeModifier: 1.4
+  nextPerk: {fileID: 11400000, guid: b8cd853263cc5a6498cf4fc763281e4a, type: 2}
