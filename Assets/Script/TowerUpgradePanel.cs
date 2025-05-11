@@ -6,12 +6,16 @@ public class TowerUpgradePanel : MonoBehaviour
     private CanvasGroup canvasGroup;
     public Transform pathAContainer;
     public Transform pathBContainer;
-
+    public TowerSelectionManager selectionManager; // Assign in inspector or auto-find
     private TowerUpgradeComponent currentTower;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        if (selectionManager == null)
+        {
+            selectionManager = FindObjectOfType<TowerSelectionManager>();
+        }
     }
 
 
@@ -57,6 +61,27 @@ public class TowerUpgradePanel : MonoBehaviour
     {
         foreach (Transform child in pathAContainer) Destroy(child.gameObject);
         foreach (Transform child in pathBContainer) Destroy(child.gameObject);
+    }
+
+
+    public void OnSellButtonClicked()
+    {
+        if(selectionManager !=null){selectionManager.RegisterSelectedTower(null);}
+        if (currentTower != null)
+        {
+        // Refund gold? Let's do 45 for now. 
+        GoldRewarder.instance.ChangeGold(+45);
+
+
+        Destroy(currentTower.gameObject);
+
+        // Clear and hide panel
+        currentTower = null;
+        Hide();
+        }
+
+
+
     }
 
     public void Hide()
