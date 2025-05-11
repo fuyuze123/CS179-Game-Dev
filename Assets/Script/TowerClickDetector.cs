@@ -1,60 +1,83 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class TowerClickDetector : MonoBehaviour
 {
-
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private LayerMask towerLayer;
-    [SerializeField] private Color highlightColor = Color.yellow;
+    [SerializeField] public TowerUpgradePanel upgradePanel;
+    [SerializeField] public TowerSelectionManager selectionManager;
 
+    [SerializeField] private Color highlightColor = Color.yellow;
     private Color ogColor;
     private SpriteRenderer sr;
 
+    private void initialization()
+    {
+     
 
+        if (mainCamera == null){ mainCamera = Camera.main;}
+        if (sr == null)
+        {
+            sr = GetComponentInChildren<SpriteRenderer>();
+            ogColor = sr != null ? sr.color : Color.white;
+        }
+        if (upgradePanel == null) {upgradePanel = FindObjectOfType<TowerUpgradePanel>(true);}
+        if (selectionManager == null)
+        {
+        selectionManager = FindObjectOfType<TowerSelectionManager>();
+        }
+
+
+    }
 
     private void Awake()
     {
-
-        if(mainCamera == null){mainCamera = Camera.main; }
+        if (mainCamera == null) mainCamera = Camera.main;
+       
     }
 
-    private void Highlight()
+    private void Start()
     {
-        Debug.Log("Highlighting tower!");
-        sr.color = highlightColor; 
-    }
-    
-
-    private void cancelHighlight()
-    {
-        sr.color = ogColor;
-    }
-
-
-   private void Start()
-    {
-        Debug.Log("TowerClickingScriptActivated");
         sr = GetComponentInChildren<SpriteRenderer>();
         ogColor = sr.color;
+        if (upgradePanel == null) {upgradePanel = FindObjectOfType<TowerUpgradePanel>(true);}
+        if (selectionManager == null) {selectionManager = FindObjectOfType<TowerSelectionManager>();}
     }
 
-   
-   //We use the if statement to interact with UI panel and world objects(towers in this case) at the same time
-   void Update()
-   {
-    if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+    private void Highlight() => sr.color = highlightColor;
+    public void Deselect()
+    {
+      initialization();
+
+        sr.color = ogColor;
+        upgradePanel.Hide();
+    }
+
+    void Update()
+    {
+         initialization();
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, Mathf.Infinity, towerLayer);
-            if (hit.collider != null)
+            if (selectionManager == null)
             {
-              
-                if (hit.collider.gameObject == gameObject)
+                Debug.LogWarning($"{name}: selectionManager is null in Update()");
+                return;
+            }
+
+            
+            Vector2 worldPoint = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, Mathf.Infinity, selectionManager.towerLayer);
+
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            {
+                Highlight();
+                TowerUpgradeComponent towerComp = GetComponent<TowerUpgradeComponent>();
+                if (towerComp != null)
                 {
-                    Highlight(); 
+                    upgradePanel.Show(towerComp);
+                    selectionManager.RegisterSelectedTower(this);
                 }
             }
         }
-
-   }
+    }
 }

@@ -12,10 +12,16 @@ public class Tower : MonoBehaviour
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f; //
     [SerializeField] private float rotationSpeed = 5f; // Speed of turret rotation
-     [SerializeField]private float fireRate = 1f;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private int damageModifier = 1;
 
     private Transform target;  // The target to be tracked
     private float timeUntilNextBullet;
+
+    public void updateFireRate(float newfire){fireRate *= newfire;}
+    public void updateDamage(int newDamage){damageModifier *= newDamage;}
+    public void updateRange(float newRange){targetingRange *= newRange;}
+
     private void FindTarget()
     {
         RaycastHit2D[] hits =  Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2) transform.position, 0f, enemyMask);
@@ -65,6 +71,7 @@ public class Tower : MonoBehaviour
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        bulletScript.damageMultiplier(damageModifier);
         bulletScript.SetTarget(target);
     }
     

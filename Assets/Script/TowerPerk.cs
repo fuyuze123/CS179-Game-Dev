@@ -11,7 +11,7 @@ public class TowerPerk : ScriptableObject
     public string description;
     public Sprite icon; 
 
-    public float damageModifier = 1f;
+    public int damageModifier = 1;
     public float fireRateModifier = 1f;
     public float rangeModifier = 1f;
 
