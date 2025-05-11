@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float bulletVelocity = 10f;
-    [SerializeField] private int bulletDamage = 1;
+    [SerializeField] int bulletDamage = 1;
 
     [Header("Layers")]
     [SerializeField] private LayerMask enemyLayerMask;
@@ -20,7 +20,11 @@ public class Bullet : MonoBehaviour
     {
         target = _target;
     }
+    public void damageMultiplier(int modifier)
+    {
+        bulletDamage *= modifier;
 
+    }
     private void FixedUpdate()
     {
         if (target == null)

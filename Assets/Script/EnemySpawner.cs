@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject bossEnemyPrefab;
     [SerializeField] private Button startWaveButton;
 
     [Header("Attributes")]
@@ -72,12 +73,24 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
         enemiesAlive = 0;
+        bool isBossWave = currentWave % 5 == 0;
         timeSinceLastSpawn = 0f;
+
+        if (isBossWave) 
+        {
+            enemiesLeftToSpawn--;
+        }
+
         if (startWaveButton != null)
         {
             startWaveButton.interactable = false;
         }
         onWaveChange.Invoke(currentWave);
+
+        if (isBossWave)
+        {
+            StartCoroutine(SpawnBossAtEnd());
+        }
     }
 
     private void EndWave()
@@ -107,5 +120,20 @@ public class EnemySpawner : MonoBehaviour
     public int GetCurrentWave()
     {
         return currentWave;
+    }
+
+    private IEnumerator SpawnBossAtEnd() // special function type to help with boss delay
+    {
+        // Wait until all regular enemies are spawned
+        while (enemiesLeftToSpawn > 0)
+        {
+            yield return null;
+        }
+
+        // Wait until regular enemies are spawned (in Update loop), then delay boss a bit
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(bossEnemyPrefab, LevelManagingScript.main.startPoint.position, Quaternion.identity);
+        enemiesAlive++;
     }
 }

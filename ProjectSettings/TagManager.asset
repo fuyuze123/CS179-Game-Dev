@@ -14,7 +14,7 @@ TagManager:
   - Enemy
   - Bullet
   - Wall
-  - 
+  - Tower
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Tower Layer
     uniqueID: 227331751
+    locked: 0
+  - name: UI
+    uniqueID: 2219202055
     locked: 0
   m_RenderingLayers:
   - Default
