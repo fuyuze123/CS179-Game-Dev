@@ -6,7 +6,9 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private bool isBoss = false;
     private Health healthComponent;
+
 
     [Header("Attribute")]
     [SerializeField] private float moveSpeed = 2f;
@@ -44,6 +46,12 @@ public class EnemyMovement : MonoBehaviour
             if (pathIndex == LevelManagingScript.main.path.Length)
             {
                 LevelManagingScript.main.DealDamage(healthComponent.GetCurrentHealth());
+
+                if (isBoss)
+                {
+                    GoldRewarder.instance.ChangeGold(200);
+                }
+
                 EnemySpawner.onEnemyDestroy.Invoke();
                 isDestroyed = true;
                 Destroy(gameObject);
@@ -85,6 +93,11 @@ public class EnemyMovement : MonoBehaviour
                 if (wallOriginalHealth > 0)
                 {
                     healthComponent.TakeDamage(wallOriginalHealth);
+                    // Check if enemy is dead after wall hit
+                    if (healthComponent.GetCurrentHealth() <= 0 && isBoss)
+                    {
+                        GoldRewarder.instance.ChangeGold(200); // reward gold
+                    }
                 }
             }
         }
