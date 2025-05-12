@@ -15,6 +15,7 @@ MonoBehaviour:
   perkName: Cannon Autoloader Cleaning
   description: 
   icon: {fileID: 8444173682978835341, guid: 3adf91ac1c765ac4ab024ce3cae4c68a, type: 3}
+  upgradeCost: 10
   damageModifier: 1
   fireRateModifier: 1.2
   rangeModifier: 1

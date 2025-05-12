@@ -15,7 +15,8 @@ MonoBehaviour:
   perkName: 
   description: 
   icon: {fileID: -1783808350427418317, guid: 3613d3b0d57ea734d86402c66a818440, type: 3}
-  damageModifier: 2
+  upgradeCost: 20
+  damageModifier: 3
   fireRateModifier: 1
   rangeModifier: 1
   nextPerk: {fileID: 0}

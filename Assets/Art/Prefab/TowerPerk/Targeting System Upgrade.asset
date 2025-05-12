@@ -15,7 +15,8 @@ MonoBehaviour:
   perkName: Targeting System Upgrade
   description: 
   icon: {fileID: 401577243715708492, guid: 16fe7536be0be744fbe3083ebd933b1a, type: 3}
+  upgradeCost: 10
   damageModifier: 1
   fireRateModifier: 1
-  rangeModifier: 1.4
+  rangeModifier: 2
   nextPerk: {fileID: 11400000, guid: b8cd853263cc5a6498cf4fc763281e4a, type: 2}

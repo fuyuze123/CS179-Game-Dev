@@ -15,7 +15,8 @@ MonoBehaviour:
   perkName: High Firerate Weapon
   description: 
   icon: {fileID: -4791259972477606314, guid: 1c2f74b840987f143ae047162e45087a, type: 3}
+  upgradeCost: 20
   damageModifier: 1
-  fireRateModifier: 1.7
+  fireRateModifier: 2
   rangeModifier: 1
   nextPerk: {fileID: 0}
