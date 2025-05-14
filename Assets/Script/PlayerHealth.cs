@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Died!");
-        //GameManager.instance.GameOver();
+        GameManager.instance.GameOver();
         // Add game ending logic later
     }
 

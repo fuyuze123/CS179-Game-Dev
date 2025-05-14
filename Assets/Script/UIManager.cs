@@ -9,6 +9,9 @@ public class UIManager :  MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI healthText;
 
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverText;
+
     private void Start()
     {
         if (GoldRewarder.instance != null)
@@ -25,6 +28,10 @@ public class UIManager :  MonoBehaviour
         {
             EnemySpawner.onWaveChange.AddListener(UpdateWaveUI);
             UpdateWaveUI(FindFirstObjectByType<EnemySpawner>().GetCurrentWave());
+        }
+        if (gameOverText != null)
+        {
+            gameOverText.SetActive(false); // Hide it at the beginning
         }
     }
 
@@ -47,5 +54,13 @@ public class UIManager :  MonoBehaviour
     {
         GoldRewarder.onGoldChange.RemoveListener(UpdateGoldUI);
         PlayerHealth.onPlayerHealthChange.RemoveListener(UpdateHealthUI);
+    }
+
+    public void ShowGameOver()
+    {
+        if (gameOverText != null)
+        {
+            gameOverText.SetActive(true);
+        }
     }
 }

@@ -22,5 +22,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GAME OVER");
         Time.timeScale = 0f; 
+
+        UIManager ui = Object.FindFirstObjectByType<UIManager>();
+        if (ui != null)
+        {
+            ui.ShowGameOver();
+        }
     }
 }
