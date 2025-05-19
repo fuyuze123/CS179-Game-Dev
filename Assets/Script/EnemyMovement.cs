@@ -16,6 +16,13 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int pathIndex = 0;
     private bool isDestroyed = false;
+    public Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
 
     private void Start()
     {
@@ -68,6 +75,34 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
+    public void TriggerDeathSequence()
+    {
+        if (isDestroyed) return;
+
+        StartCoroutine(dyingSequence());
+    }
+
+
+    public IEnumerator dyingSequence()
+    {
+      
+       isDestroyed = true;
+       rb.linearVelocity = Vector2.zero;
+       animator.SetTrigger("Die");
+
+            
+       yield return new WaitForSeconds(1.2f);
+
+       if (isBoss)
+       {
+        GoldRewarder.instance.ChangeGold(200);
+        }
+
+        EnemySpawner.onEnemyDestroy.Invoke();
+        Destroy(gameObject);
+        
+    }
+
     private void FixedUpdate()
     {
         if (isDestroyed || target == null)
@@ -94,9 +129,13 @@ public class EnemyMovement : MonoBehaviour
                 {
                     healthComponent.TakeDamage(wallOriginalHealth);
                     // Check if enemy is dead after wall hit
-                    if (healthComponent.GetCurrentHealth() <= 0 && isBoss)
+                    if (healthComponent.GetCurrentHealth() <= 0)
                     {
-                        GoldRewarder.instance.ChangeGold(200); // reward gold
+                        if (isBoss)
+                        {
+                          GoldRewarder.instance.ChangeGold(200); // reward gold;
+                        }
+                        
                     }
                 }
             }

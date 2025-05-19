@@ -30,17 +30,20 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
+
         isDead = true;
-        EnemySpawner.onEnemyDestroy.Invoke();
-        GoldRewarder.instance.ChangeGold(2);
-        Destroy(gameObject);
+
+        // Let another script handle visuals and destruction
+        EnemyMovement movement = GetComponent<EnemyMovement>();
+        if (movement != null)
+        {
+            movement.TriggerDeathSequence();
+        }
     }
 
-    public int GetCurrentHealth()
+
+        public int GetCurrentHealth()
     {
         return Mathf.Max(0, currentHealth);
     }
