@@ -20,6 +20,9 @@ public class Bullet : MonoBehaviour
     {
         target = _target;
     }
+
+
+    
     public void damageMultiplier(int modifier)
     {
         bulletDamage *= modifier;
