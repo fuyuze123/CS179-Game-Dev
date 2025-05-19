@@ -40,10 +40,20 @@ public class Tower : MonoBehaviour
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
+    private bool IsValidTarget(Transform target)
+    {
+    if (target == null) return false;
+
+    Health health = target.GetComponent<Health>();
+    if (health == null) return false;
+
+    return health.GetCurrentHealth() > 0;
+    }
+
 
     private void Update()
     {
-        if (target == null)
+        if (target == null || !IsValidTarget(target))
         {
             FindTarget();
             return;
