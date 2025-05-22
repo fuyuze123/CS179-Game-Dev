@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TowerUpgradeComponent : MonoBehaviour
 {
     public TowerUpgradePath pathA;
     public TowerUpgradePath pathB;
+    public TowerPerkRegistry perkRegistry;
 
     private TowerUpgradePath selectedPath;
     private TowerPerk currentPerk;
@@ -93,5 +95,63 @@ public class TowerUpgradeComponent : MonoBehaviour
         ApplyPerk(perk);
         }
 
+    public string GetCurrentPerkName()
+    {
+        return currentPerk != null ? currentPerk.perkName : "";
+    }
+
+    public List<string> GetAppliedPerkNames()
+    {
+        List<string> names = new List<string>();
+        TowerPerk p = selectedPath?.firstPerk;
+
+        while (p != null && currentPerk != null)
+        {
+            names.Add(p.perkName);
+            if (p == currentPerk) break;
+            p = p.nextPerk;
+        }
+
+        return names;
+    }
+
+
+    public void ApplyPerksByNames(List<string> perkNames)
+    {
+        if (perkRegistry == null)
+        {
+            Debug.LogError("Perk Registry is not assigned.");
+            return;
+        }
+
+        foreach (string perkName in perkNames)
+        {
+            TowerPerk perk = perkRegistry.GetPerkByName(perkName);
+            if (perk == null)
+            {
+                Debug.LogWarning($"Perk '{perkName}' not found in registry.");
+                continue;
+            }
+
+            if (selectedPath == null)
+            {
+                if (pathA != null && pathA.firstPerk == perk)
+                    selectedPath = pathA;
+                else if (pathB != null && pathB.firstPerk == perk)
+                    selectedPath = pathB;
+            }
+
+            if (!CanSelect(perk))
+                break;
+
+            currentPerk = perk;
+            ApplyPerk(perk);
+        }
+    }
+
+    private TowerPerk FindPerkByName(string name)
+    {
+        return perkRegistry.GetPerkByName(name);
+    }
 
 }

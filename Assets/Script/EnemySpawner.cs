@@ -122,6 +122,12 @@ public class EnemySpawner : MonoBehaviour
         return currentWave;
     }
 
+    public void SetWave(int wave)
+    {
+        currentWave = wave;
+        onWaveChange.Invoke(currentWave);
+    }
+
     private IEnumerator SpawnBossAtEnd() // special function type to help with boss delay
     {
         // Wait until all regular enemies are spawned

@@ -4,6 +4,8 @@ using TMPro;
 
 public class UIManager :  MonoBehaviour
 {
+    public static UIManager instance;
+    private int currentLevel = 1;
     [Header("UI Text Elements")]
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI goldText;
@@ -11,6 +13,11 @@ public class UIManager :  MonoBehaviour
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverText;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -47,6 +54,7 @@ public class UIManager :  MonoBehaviour
 
     private void UpdateWaveUI(int newWaveAmount)
     {
+        currentLevel = newWaveAmount;
         waveText.text = "Level: " + newWaveAmount;
     }
 
@@ -63,4 +71,16 @@ public class UIManager :  MonoBehaviour
             gameOverText.SetActive(true);
         }
     }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    public void SetCurrentLevel(int level)
+    {
+        currentLevel = level;
+        waveText.text = "Level: " + level;
+    }
+
 }
