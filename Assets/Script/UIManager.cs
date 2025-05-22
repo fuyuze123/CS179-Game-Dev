@@ -4,10 +4,20 @@ using TMPro;
 
 public class UIManager :  MonoBehaviour
 {
+    public static UIManager instance;
+    private int currentLevel = 1;
     [Header("UI Text Elements")]
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI healthText;
+
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverText;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -26,6 +36,10 @@ public class UIManager :  MonoBehaviour
             EnemySpawner.onWaveChange.AddListener(UpdateWaveUI);
             UpdateWaveUI(FindFirstObjectByType<EnemySpawner>().GetCurrentWave());
         }
+        if (gameOverText != null)
+        {
+            gameOverText.SetActive(false); // Hide it at the beginning
+        }
     }
 
     private void UpdateGoldUI(int newGoldAmount)
@@ -40,6 +54,7 @@ public class UIManager :  MonoBehaviour
 
     private void UpdateWaveUI(int newWaveAmount)
     {
+        currentLevel = newWaveAmount;
         waveText.text = "Level: " + newWaveAmount;
     }
 
@@ -48,4 +63,24 @@ public class UIManager :  MonoBehaviour
         GoldRewarder.onGoldChange.RemoveListener(UpdateGoldUI);
         PlayerHealth.onPlayerHealthChange.RemoveListener(UpdateHealthUI);
     }
+
+    public void ShowGameOver()
+    {
+        if (gameOverText != null)
+        {
+            gameOverText.SetActive(true);
+        }
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    public void SetCurrentLevel(int level)
+    {
+        currentLevel = level;
+        waveText.text = "Level: " + level;
+    }
+
 }

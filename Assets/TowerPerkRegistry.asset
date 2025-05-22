@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a5ec63ef5ad7f49b9a7e8893ee41a4, type: 3}
+  m_Name: TowerPerkRegistry
+  m_EditorClassIdentifier: 
+  allPerks:
+  - {fileID: 11400000, guid: f86ed767d6d461b48a777dc9dabe4e0a, type: 2}
+  - {fileID: 11400000, guid: 3d14701ef96e96b448b7390dd699401f, type: 2}
+  - {fileID: 11400000, guid: b8cd853263cc5a6498cf4fc763281e4a, type: 2}
+  - {fileID: 11400000, guid: 4fa3eeafe1fa1af4393562da6a856a2f, type: 2}
