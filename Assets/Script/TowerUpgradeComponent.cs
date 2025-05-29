@@ -9,10 +9,19 @@ public class TowerUpgradeComponent : MonoBehaviour
 
     private TowerUpgradePath selectedPath;
     private TowerPerk currentPerk;
+    
+    [SerializeField] private Sprite level1Sprite;
+    [SerializeField] private Sprite level2Sprite;
+    [SerializeField] private Sprite level3Sprite;
+
+    [SerializeField] private SpriteRenderer cannonSpriteRenderer;
+
+
+
 
     public void SelectUpgradePath(bool isPathA)
     {
-        if (selectedPath != null) {return;} 
+        if (selectedPath != null) { return; }
 
         selectedPath = isPathA ? pathA : pathB;
         currentPerk = selectedPath.firstPerk;
@@ -34,6 +43,7 @@ public class TowerUpgradeComponent : MonoBehaviour
         GetComponent<Tower>().updateFireRate(perk.fireRateModifier);
         GetComponent<Tower>().updateRange(perk.rangeModifier);
         Debug.Log("Upgraded");
+        UpdateSpriteBasedOnPerk();
     }
 
 
@@ -99,6 +109,28 @@ public class TowerUpgradeComponent : MonoBehaviour
     {
         return currentPerk != null ? currentPerk.perkName : "";
     }
+
+private void UpdateSpriteBasedOnPerk()
+{
+    int perkLevel = GetAppliedPerkNames().Count;
+
+    if (cannonSpriteRenderer == null) return;
+
+    if (perkLevel == 0)
+    {
+        cannonSpriteRenderer.sprite = level1Sprite;
+    }
+    else if (perkLevel == 1)
+    {
+        cannonSpriteRenderer.sprite = level2Sprite;
+    }
+    else if (perkLevel >= 2)
+    {
+        cannonSpriteRenderer.sprite = level3Sprite;
+    }
+}
+
+
 
     public List<string> GetAppliedPerkNames()
     {

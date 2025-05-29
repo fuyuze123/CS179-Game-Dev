@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e191b9636e36e104fa6c2bb88cac3d4e, type: 3}
   m_Name: High Power Bullet
   m_EditorClassIdentifier: 
-  perkName: 
+  perkName: High Power Bullet
   description: 
   icon: {fileID: -1783808350427418317, guid: 3613d3b0d57ea734d86402c66a818440, type: 3}
   upgradeCost: 20
