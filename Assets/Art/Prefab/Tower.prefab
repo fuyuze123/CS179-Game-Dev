@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09, y: 0.09, z: 3.425758}
+  m_LocalScale: {x: 0.085, y: 0.085, z: 3.2354379}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1678322520131943537}
@@ -375,6 +375,10 @@ MonoBehaviour:
   pathA: {fileID: 11400000, guid: 4c89a430e2ba273409616ea83221668b, type: 2}
   pathB: {fileID: 11400000, guid: e583eca531bf5b14a9b09e1cb39c0f0d, type: 2}
   perkRegistry: {fileID: 0}
+  level1Sprite: {fileID: -27849228842517055, guid: 4d6da1821342fcf4e9d89b9bc012089f, type: 3}
+  level2Sprite: {fileID: 4023266009479179380, guid: 0d323ab9da9aacc43ba8e16acebae153, type: 3}
+  level3Sprite: {fileID: -5018086690894903732, guid: 7b1608c5cb71df842bc661abbd7f2f0b, type: 3}
+  cannonSpriteRenderer: {fileID: 8698550077845911693}
 --- !u!114 &-5693181897724352760
 MonoBehaviour:
   m_ObjectHideFlags: 0
