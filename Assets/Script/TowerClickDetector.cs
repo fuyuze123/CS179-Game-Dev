@@ -68,10 +68,13 @@ public class TowerClickDetector : MonoBehaviour
             Vector2 worldPoint = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, Mathf.Infinity, selectionManager.towerLayer);
 
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            if (hit.collider != null && hit.collider.transform.root == transform)
             {
                 Highlight();
                 TowerUpgradeComponent towerComp = GetComponent<TowerUpgradeComponent>();
+
+                if (towerComp == null)
+                { Debug.LogWarning($"{name}: TowerUpgradeComponent not found on {gameObject.name} or its expected location."); }
                 if (towerComp != null)
                 {
                     upgradePanel.Show(towerComp);

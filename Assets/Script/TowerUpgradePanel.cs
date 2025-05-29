@@ -23,16 +23,16 @@ public class TowerUpgradePanel : MonoBehaviour
 
     public void Show(TowerUpgradeComponent tower)
     {
+        Debug.Log($"[TowerUpgradePanel] Show called for tower: {tower.name}");
         currentTower = tower;
         ClearButtons();
 
         PopulatePath(tower.pathA.firstPerk, pathAContainer);
         PopulatePath(tower.pathB.firstPerk, pathBContainer);
-
-        gameObject.SetActive(true);
+        
         if(canvasGroup != null)
         {
-            canvasGroup.alpha = 1f;
+        canvasGroup.alpha = 1f;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         }
@@ -91,7 +91,7 @@ public class TowerUpgradePanel : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         }
-        gameObject.SetActive(false);
+
 
 
 
