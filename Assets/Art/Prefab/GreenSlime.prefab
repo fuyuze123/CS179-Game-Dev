@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4159326099665464516, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6667252297948816019, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.42
@@ -145,6 +149,7 @@ MonoBehaviour:
   rb: {fileID: 4482114811195193424}
   isBoss: 0
   moveSpeed: 4
+  animator: {fileID: 0}
 --- !u!50 &4482114811195193424
 Rigidbody2D:
   serializedVersion: 5
