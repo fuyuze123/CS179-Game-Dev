@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.09, y: 0.09, z: 3.425758}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1678322520131943537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 227331751
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -539579915749326718, guid: e50676d1c5952a04d958a97299d8f662, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 8568003737438526819, guid: 18bc334e7074e014db050141ac7698ad, type: 3}
+  m_Color: {r: 0.7509433, g: 0.12893553, b: 0.44171366, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -146,8 +146,8 @@ Transform:
   m_GameObject: {fileID: 4143073042704618538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: 0.019546151, w: -0.99980897}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.025, y: 0.445, z: 0}
+  m_LocalScale: {x: 0.087559745, y: 0.08897669, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1078986167418048761}
@@ -196,12 +196,12 @@ SpriteRenderer:
   m_SortingLayerID: 227331751
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 8195469170884960449, guid: e50676d1c5952a04d958a97299d8f662, type: 3}
+  m_Sprite: {fileID: -27849228842517055, guid: 4d6da1821342fcf4e9d89b9bc012089f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.03125, y: 1}
+  m_Size: {x: 10.66, y: 11.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 4243355546130663850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.039, y: 0.495, z: 0}
+  m_LocalPosition: {x: 0.039, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,7 +295,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1995739138297758781, guid: aaa0413ab627ee944aeadd2f2a0deccc, type: 3}
   firingPoint: {fileID: 2930168983542508197}
   targetingRange: 2.83
-  rotationSpeed: 200
+  rotationSpeed: 300
   fireRate: 1
   damageModifier: 1
 --- !u!61 &2630898643937237383
@@ -374,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathA: {fileID: 11400000, guid: 4c89a430e2ba273409616ea83221668b, type: 2}
   pathB: {fileID: 11400000, guid: e583eca531bf5b14a9b09e1cb39c0f0d, type: 2}
+  perkRegistry: {fileID: 0}
 --- !u!114 &-5693181897724352760
 MonoBehaviour:
   m_ObjectHideFlags: 0
