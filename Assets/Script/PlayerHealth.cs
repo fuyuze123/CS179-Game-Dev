@@ -33,7 +33,16 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Damage Taken: " + damage); // Debug
+        if (ScreenEffectsManager.instance != null)
+        {
+            ScreenEffectsManager.instance.TriggerDamageEffects();
+        }
+            
         onPlayerHealthChange.Invoke(currentHealth);
+        
+
+
+
         if (currentHealth <= 0)
         {
             Die();
