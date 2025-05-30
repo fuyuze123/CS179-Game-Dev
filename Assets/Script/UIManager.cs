@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         if (FindFirstObjectByType<EnemySpawner>() != null)
         {
             EnemySpawner.onWaveChange.AddListener(UpdateWaveUI);
-            defeatedEnemyText.text = "kill: " + currentEnemyDefeated;
+            defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
             UpdateWaveUI(FindFirstObjectByType<EnemySpawner>().GetCurrentWave());
         }
         if (gameOverText != null)
@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
     public void UpdateEnemyDefeatedUI()
     {
         currentEnemyDefeated++;
-         defeatedEnemyText.text = "kill: " + currentEnemyDefeated;
+         defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
     }
 
     private void UpdateGoldUI(int newGoldAmount)
@@ -103,7 +103,7 @@ public class UIManager : MonoBehaviour
 
     public void RefreshDefeatedEnemyUI()
     {
-        defeatedEnemyText.text = "kill: " + currentEnemyDefeated;
+        defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
     }
 
 }
