@@ -39,6 +39,7 @@ public class Health : MonoBehaviour
         if (movement != null)
         {
             movement.TriggerDeathSequence();
+            
         }
     }
 

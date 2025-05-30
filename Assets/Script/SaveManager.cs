@@ -26,6 +26,9 @@ public class SaveManager : MonoBehaviour
         data.gold = GoldRewarder.instance.GetCurrentGold();
         data.playerHealth = PlayerHealth.instance.GetHealth();
         data.currentLevel = UIManager.instance.GetCurrentLevel();
+        data.enemyDefeated = UIManager.instance.getCurrentDefeated();
+        
+    
 
         foreach (var tower in FindObjectsByType<Tower>(FindObjectsSortMode.None))
         {
@@ -33,8 +36,9 @@ public class SaveManager : MonoBehaviour
             towerData.position = tower.transform.position;
 
             TowerUpgradeComponent upgrade = tower.GetComponent<TowerUpgradeComponent>();
-            if (upgrade != null) {
-                towerData.appliedPerks = upgrade.GetAppliedPerkNames(); 
+            if (upgrade != null)
+            {
+                towerData.appliedPerks = upgrade.GetAppliedPerkNames();
             }
 
             data.towers.Add(towerData);
@@ -64,7 +68,8 @@ public class SaveManager : MonoBehaviour
         PlayerHealth.instance.currentHealth = data.playerHealth;
         PlayerHealth.onPlayerHealthChange.Invoke(data.playerHealth);
         UIManager.instance.SetCurrentLevel(data.currentLevel);
-
+        UIManager.instance.setCurrentDefeated(data.enemyDefeated);
+        UIManager.instance.RefreshDefeatedEnemyUI();
         EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
         if (spawner != null)
         {

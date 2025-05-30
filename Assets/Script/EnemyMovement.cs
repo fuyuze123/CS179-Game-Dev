@@ -78,6 +78,7 @@ public class EnemyMovement : MonoBehaviour
     public void TriggerDeathSequence()
     {
         if (isDestroyed) return;
+        if (UIManager.instance != null){UIManager.instance.UpdateEnemyDefeatedUI();}
 
         StartCoroutine(dyingSequence());
     }
