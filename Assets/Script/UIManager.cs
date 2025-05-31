@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager :  MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     private int currentLevel = 1;
+    private int currentEnemyDefeated = 0;
     [Header("UI Text Elements")]
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI defeatedEnemyText;
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverText;
@@ -34,12 +36,18 @@ public class UIManager :  MonoBehaviour
         if (FindFirstObjectByType<EnemySpawner>() != null)
         {
             EnemySpawner.onWaveChange.AddListener(UpdateWaveUI);
+            defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
             UpdateWaveUI(FindFirstObjectByType<EnemySpawner>().GetCurrentWave());
         }
         if (gameOverText != null)
         {
             gameOverText.SetActive(false); // Hide it at the beginning
         }
+    }
+    public void UpdateEnemyDefeatedUI()
+    {
+        currentEnemyDefeated++;
+         defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
     }
 
     private void UpdateGoldUI(int newGoldAmount)
@@ -81,6 +89,21 @@ public class UIManager :  MonoBehaviour
     {
         currentLevel = level;
         waveText.text = "Level: " + level;
+    }
+
+    public int getCurrentDefeated()
+    {
+        return currentEnemyDefeated;
+    }
+    public void setCurrentDefeated(int newEnemyDefeated)
+    {
+        currentEnemyDefeated = newEnemyDefeated;
+
+    }
+
+    public void RefreshDefeatedEnemyUI()
+    {
+        defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
     }
 
 }
