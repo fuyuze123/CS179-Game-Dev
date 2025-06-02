@@ -10,15 +10,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4060603323306856039, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
       propertyPath: m_Name
-      value: GreenSlime
+      value: Orange Slime
       objectReference: {fileID: 0}
     - target: {fileID: 4060603323306856039, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4060603323306856039, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4159326099665464516, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
-      propertyPath: m_SortingOrder
+      propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159326099665464516, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159326099665464516, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4358329
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159326099665464516, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9528302
       objectReference: {fileID: 0}
     - target: {fileID: 6667252297948816019, guid: 73ca0eb8d8d8d6444b7fe34c500a4056, type: 3}
       propertyPath: m_LocalScale.x
@@ -148,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4482114811195193424}
   isBoss: 0
-  moveSpeed: 2
+  moveSpeed: 5
   animator: {fileID: 0}
 --- !u!50 &4482114811195193424
 Rigidbody2D:
@@ -189,4 +205,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb740150a3fab534799e99a3ab26ef3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 12
