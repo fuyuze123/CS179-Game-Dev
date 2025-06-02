@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn;
     public bool isSpawning = false;
     private int currentEnemyOrderInWave;
+    private static int bossSpawnOccurrences = 0;
 
     private void InitializeDefaultWaveCompositions()
     {
@@ -271,7 +272,15 @@ public class EnemySpawner : MonoBehaviour
         // Wait until regular enemies are spawned (in Update loop), then delay boss a bit
         yield return new WaitForSeconds(1f);
 
-        Instantiate(bossEnemyPrefab, LevelManagingScript.main.startPoint.position, Quaternion.identity);
+        GameObject bossInstance = Instantiate(bossEnemyPrefab, LevelManagingScript.main.startPoint.position, Quaternion.identity);
+        bossSpawnOccurrences++;
+        Health bossHealthComponent = bossInstance.GetComponent<Health>();
+        if (bossHealthComponent != null)
+        {
+            int baseBossHealth = bossHealthComponent.maxHealth;
+            int newHealthForThisBoss = baseBossHealth * (int)Mathf.Pow(2, bossSpawnOccurrences - 1);
+            bossHealthComponent.SetCurrentAndMaxHealth(newHealthForThisBoss);
+        }
         enemiesAlive++;
     }
 }

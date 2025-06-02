@@ -97,6 +97,10 @@ public class EnemyMovement : MonoBehaviour
        if (isBoss)
        {
         GoldRewarder.instance.ChangeGold(200);
+       }
+       else
+       {
+            GoldRewarder.instance.ChangeGold(healthComponent.maxHealth);
         }
 
         EnemySpawner.onEnemyDestroy.Invoke();

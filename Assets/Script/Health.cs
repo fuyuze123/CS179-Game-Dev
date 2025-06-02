@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private int maxHealth = 2;
+    [SerializeField] public int maxHealth = 2;
     private int currentHealth;
     private bool isDead = false;
 
@@ -44,8 +44,15 @@ public class Health : MonoBehaviour
     }
 
 
-        public int GetCurrentHealth()
+    public int GetCurrentHealth()
     {
         return Mathf.Max(0, currentHealth);
+    }
+
+    public void SetCurrentAndMaxHealth(int newHealthValue)
+    {
+        maxHealth = newHealthValue;
+        currentHealth = newHealthValue;
+        isDead = false;
     }
 }
