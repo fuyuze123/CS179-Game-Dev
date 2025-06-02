@@ -28,7 +28,15 @@ public class SaveManager : MonoBehaviour
         data.currentLevel = UIManager.instance.GetCurrentLevel();
         data.enemyDefeated = UIManager.instance.getCurrentDefeated();
         
-    
+        EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            data.selectedDifficulty = (int)spawner.currentDifficulty;
+        }
+        else
+        {
+            data.selectedDifficulty = (int)GameDifficulty.Beginner;
+        }
 
         foreach (var tower in FindObjectsByType<Tower>(FindObjectsSortMode.None))
         {
@@ -74,6 +82,15 @@ public class SaveManager : MonoBehaviour
         if (spawner != null)
         {
             spawner.SetWave(data.currentLevel);
+            if (System.Enum.IsDefined(typeof(GameDifficulty), data.selectedDifficulty))
+            {
+                spawner.currentDifficulty = (GameDifficulty)data.selectedDifficulty;
+                Debug.Log("Loaded difficulty: " + spawner.currentDifficulty);
+            }
+            else
+            {
+                spawner.currentDifficulty = GameDifficulty.Beginner;
+            }
         }
 
         foreach (var tower in FindObjectsByType<Tower>(FindObjectsSortMode.None))

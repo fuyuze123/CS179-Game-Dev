@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4482114811195193424}
   isBoss: 0
-  moveSpeed: 4
+  moveSpeed: 3
   animator: {fileID: 0}
 --- !u!50 &4482114811195193424
 Rigidbody2D:
