@@ -44,8 +44,15 @@ public class Health : MonoBehaviour
     }
 
 
-        public int GetCurrentHealth()
+    public int GetCurrentHealth()
     {
         return Mathf.Max(0, currentHealth);
+    }
+
+    public void SetCurrentAndMaxHealth(int newHealthValue)
+    {
+        maxHealth = newHealthValue;
+        currentHealth = newHealthValue;
+        isDead = false;
     }
 }
