@@ -254,6 +254,7 @@ MonoBehaviour:
   rb: {fileID: 2781425461348790190}
   isBoss: 1
   moveSpeed: 2
+  animator: {fileID: 0}
 --- !u!114 &4915370480804088854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,4 +303,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 1.9999999}
-  m_Radius: 1.9999999
+  m_Radius: 2
