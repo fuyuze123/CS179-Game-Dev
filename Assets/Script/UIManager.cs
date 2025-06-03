@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverText;
+    [SerializeField] private Button Back_to_Menu_Button;
 
     private void Awake()
     {
@@ -78,6 +80,11 @@ public class UIManager : MonoBehaviour
         {
             gameOverText.SetActive(true);
         }
+        if (Back_to_Menu_Button != null)
+        {
+            Back_to_Menu_Button.gameObject.SetActive(true);
+        }
+        
     }
 
     public int GetCurrentLevel()
@@ -104,6 +111,12 @@ public class UIManager : MonoBehaviour
     public void RefreshDefeatedEnemyUI()
     {
         defeatedEnemyText.text = "Kill: " + currentEnemyDefeated;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // just in case it was paused
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
