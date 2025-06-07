@@ -19,6 +19,11 @@ public class Bullet : MonoBehaviour
     public void SetTarget(Transform _target)
     {
         target = _target;
+        Vector2 direction = (target.position - transform.position).normalized;
+        rb.linearVelocity = direction * bulletVelocity;
+        // arctan
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb.rotation = angle -90f;
     }
 
 
@@ -35,10 +40,14 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Vector2 direction = target.position - transform.position;
-        direction = direction.normalized;
+
+        Vector2 direction = (target.position - transform.position).normalized;
         rb.linearVelocity = direction * bulletVelocity;
+        // arctan
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb.rotation = angle -90f;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

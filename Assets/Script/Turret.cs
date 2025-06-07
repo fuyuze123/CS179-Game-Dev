@@ -79,11 +79,15 @@ public class Tower : MonoBehaviour
     }
     private void shoot()
     {
-        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        Vector2 direction = (target.position - firingPoint.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, rotation);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         bulletScript.damageMultiplier(damageModifier);
         bulletScript.SetTarget(target);
     }
+
     
 
 
