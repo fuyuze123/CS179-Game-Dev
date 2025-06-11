@@ -120,5 +120,7 @@ public class SaveManager : MonoBehaviour
         GameObject startMenu = GameObject.Find("StartMenuPanel");
         if (startMenu != null)
             startMenu.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 }
